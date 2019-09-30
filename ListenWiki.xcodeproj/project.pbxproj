@@ -8,20 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		1504534E2250E341002F8527 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1504534D2250E341002F8527 /* AppDelegate.swift */; };
-		150453502250E341002F8527 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1504534F2250E341002F8527 /* ViewController.swift */; };
+		150453502250E341002F8527 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1504534F2250E341002F8527 /* MapViewController.swift */; };
 		150453532250E341002F8527 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 150453512250E341002F8527 /* Main.storyboard */; };
 		150453552250E343002F8527 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 150453542250E343002F8527 /* Assets.xcassets */; };
 		150453582250E343002F8527 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 150453562250E343002F8527 /* LaunchScreen.storyboard */; };
+		150453602250F052002F8527 /* LocationRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1504535F2250F052002F8527 /* LocationRequestService.swift */; };
+		152C9B79226CC63300142E1A /* WikiLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C9B78226CC63300142E1A /* WikiLocation.swift */; };
+		15C9B87523413B3200424727 /* ListenArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9B87423413B3200424727 /* ListenArticleViewController.swift */; };
+		15C9B87723413E9900424727 /* WikiPageExtract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9B87623413E9900424727 /* WikiPageExtract.swift */; };
+		15CB48C4226623EF00340A0C /* MapResultFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB48C3226623EF00340A0C /* MapResultFetcher.swift */; };
+		15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB48C52266297F00340A0C /* MapSeachResults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1504534A2250E341002F8527 /* ListenWiki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListenWiki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1504534D2250E341002F8527 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1504534F2250E341002F8527 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1504534F2250E341002F8527 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		150453522250E341002F8527 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		150453542250E343002F8527 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		150453572250E343002F8527 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		150453592250E343002F8527 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1504535F2250F052002F8527 /* LocationRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequestService.swift; sourceTree = "<group>"; };
+		152C9B78226CC63300142E1A /* WikiLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiLocation.swift; sourceTree = "<group>"; };
+		15C9B87423413B3200424727 /* ListenArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenArticleViewController.swift; sourceTree = "<group>"; };
+		15C9B87623413E9900424727 /* WikiPageExtract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiPageExtract.swift; sourceTree = "<group>"; };
+		15CB48C3226623EF00340A0C /* MapResultFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapResultFetcher.swift; sourceTree = "<group>"; };
+		15CB48C52266297F00340A0C /* MapSeachResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSeachResults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +67,17 @@
 			isa = PBXGroup;
 			children = (
 				1504534D2250E341002F8527 /* AppDelegate.swift */,
-				1504534F2250E341002F8527 /* ViewController.swift */,
+				1504534F2250E341002F8527 /* MapViewController.swift */,
 				150453512250E341002F8527 /* Main.storyboard */,
 				150453542250E343002F8527 /* Assets.xcassets */,
 				150453562250E343002F8527 /* LaunchScreen.storyboard */,
 				150453592250E343002F8527 /* Info.plist */,
+				1504535F2250F052002F8527 /* LocationRequestService.swift */,
+				15CB48C3226623EF00340A0C /* MapResultFetcher.swift */,
+				15CB48C52266297F00340A0C /* MapSeachResults.swift */,
+				152C9B78226CC63300142E1A /* WikiLocation.swift */,
+				15C9B87423413B3200424727 /* ListenArticleViewController.swift */,
+				15C9B87623413E9900424727 /* WikiPageExtract.swift */,
 			);
 			path = ListenWiki;
 			sourceTree = "<group>";
@@ -135,8 +153,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				150453502250E341002F8527 /* ViewController.swift in Sources */,
+				150453502250E341002F8527 /* MapViewController.swift in Sources */,
+				15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */,
+				15C9B87523413B3200424727 /* ListenArticleViewController.swift in Sources */,
+				152C9B79226CC63300142E1A /* WikiLocation.swift in Sources */,
+				15C9B87723413E9900424727 /* WikiPageExtract.swift in Sources */,
 				1504534E2250E341002F8527 /* AppDelegate.swift in Sources */,
+				150453602250F052002F8527 /* LocationRequestService.swift in Sources */,
+				15CB48C4226623EF00340A0C /* MapResultFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,7 +237,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -268,7 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -283,13 +307,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VFU4758HP3;
+				DEVELOPMENT_TEAM = W9PJY5HMM3;
 				INFOPLIST_FILE = ListenWiki/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.flawlessapps.ListenWiki;
+				PRODUCT_BUNDLE_IDENTIFIER = com.greatApps.ListenWiki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -301,13 +325,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VFU4758HP3;
+				DEVELOPMENT_TEAM = W9PJY5HMM3;
 				INFOPLIST_FILE = ListenWiki/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.flawlessapps.ListenWiki;
+				PRODUCT_BUNDLE_IDENTIFIER = com.greatApps.ListenWiki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
