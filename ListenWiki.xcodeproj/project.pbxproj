@@ -14,6 +14,7 @@
 		150453582250E343002F8527 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 150453562250E343002F8527 /* LaunchScreen.storyboard */; };
 		150453602250F052002F8527 /* LocationRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1504535F2250F052002F8527 /* LocationRequestService.swift */; };
 		152C9B79226CC63300142E1A /* WikiLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C9B78226CC63300142E1A /* WikiLocation.swift */; };
+		1576FA5423427F3F00A64003 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1576FA5323427F3F00A64003 /* Util.swift */; };
 		15C9B87523413B3200424727 /* ListenArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9B87423413B3200424727 /* ListenArticleViewController.swift */; };
 		15C9B87723413E9900424727 /* WikiPageExtract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9B87623413E9900424727 /* WikiPageExtract.swift */; };
 		15CB48C4226623EF00340A0C /* MapResultFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB48C3226623EF00340A0C /* MapResultFetcher.swift */; };
@@ -30,6 +31,7 @@
 		150453592250E343002F8527 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1504535F2250F052002F8527 /* LocationRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequestService.swift; sourceTree = "<group>"; };
 		152C9B78226CC63300142E1A /* WikiLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiLocation.swift; sourceTree = "<group>"; };
+		1576FA5323427F3F00A64003 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		15C9B87423413B3200424727 /* ListenArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenArticleViewController.swift; sourceTree = "<group>"; };
 		15C9B87623413E9900424727 /* WikiPageExtract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiPageExtract.swift; sourceTree = "<group>"; };
 		15CB48C3226623EF00340A0C /* MapResultFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapResultFetcher.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				152C9B78226CC63300142E1A /* WikiLocation.swift */,
 				15C9B87423413B3200424727 /* ListenArticleViewController.swift */,
 				15C9B87623413E9900424727 /* WikiPageExtract.swift */,
+				1576FA5323427F3F00A64003 /* Util.swift */,
 			);
 			path = ListenWiki;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				150453502250E341002F8527 /* MapViewController.swift in Sources */,
+				1576FA5423427F3F00A64003 /* Util.swift in Sources */,
 				15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */,
 				15C9B87523413B3200424727 /* ListenArticleViewController.swift in Sources */,
 				152C9B79226CC63300142E1A /* WikiLocation.swift in Sources */,
