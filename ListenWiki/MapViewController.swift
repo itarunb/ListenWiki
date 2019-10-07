@@ -11,30 +11,27 @@ import MapKit
 
 class MapViewController: UIViewController {
 
-    @IBOutlet var mapview : MKMapView?
+    @IBOutlet var mapview : MKMapView!
     
-    @IBOutlet var mapSearchButton : UIButton?
-    
-    fileprivate let resultFetcher = MapResultFetcher()
-    
+        
     fileprivate var currentResults : MapSearchResults?
     
-    @IBAction func searchTapped() {
-        mapSearchButton?.isHidden = true
-        guard  let mapView = mapview else {
-            return
-        }
-        let region  = mapView.region
-        resultFetcher.fetchResults(forMapRegion: region, completionHandler: {
-            mapResults in
-            DispatchQueue.main.async {
-                self.currentResults = mapResults
-                let annotations = self.getAnnotations(withMapResults : mapResults)
-                self.mapview?.removeAnnotations(self.mapview!.annotations)
-                self.mapview?.addAnnotations(annotations)
-            }
-        })
-    }
+    let networkController = NetworkController()
+    
+    
+    let mapSearchButton : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .cyan
+        let str = NSAttributedString(string: "Search this area", attributes: [.foregroundColor : UIColor.darkText, .font : UIFont.italicSystemFont(ofSize: 10)])
+        button.setAttributedTitle(str, for: .normal)
+        let strHighlited = NSAttributedString(string: "Search this area", attributes: [.foregroundColor : UIColor.darkText.withAlphaComponent(0.5), .font : UIFont.italicSystemFont(ofSize: 10)])
+        button.setAttributedTitle(strHighlited, for: .highlighted)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        button.layer.cornerRadius = 5
+        return button
+    }()
+    
     
     lazy var locationManager : CLLocationManager = {
         let lm = CLLocationManager()
@@ -49,13 +46,71 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Map"
         setUpMapView()
+        setUpSearchButton()
         LocationRequestService.requestAuthorisationIfReqd(withManagerObj: locationManager)
     }
     
-    fileprivate func setUpMapView() {
-        mapview?.showsUserLocation = true
-        mapview?.delegate = self
+    private func setUpMapView() {
+        mapview.showsUserLocation = true
+        mapview.delegate = self
     }
+    
+    
+    
+    private func setUpSearchButton() {
+        mapview.addSubview(mapSearchButton)
+        NSLayoutConstraint.activate([
+            mapSearchButton.centerXAnchor.constraint(equalTo: mapview.centerXAnchor),
+            mapSearchButton.topAnchor.constraint(equalTo: mapview.topAnchor, constant: 30),
+            mapSearchButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 140)
+        ])
+        mapSearchButton.addTarget(self, action: #selector(searchTapped), for: .touchUpInside)
+    }
+    
+    @objc func searchTapped() {
+        guard  let mapView = mapview else {
+            return
+        }
+        self.setAsSearching(searchOngoing:true)
+        let region  = mapView.region
+        networkController.request(payload: PayloadGenerator(requestType: .fetchLocations(region: region)).generatePayload(), completion:{ [weak self]
+            (result: Result<MapSearchResults, Error>) in
+            DispatchQueue.main.async { [weak self] in
+                do {
+                    let response = try result.get()
+                    self?.handleLocationResponse(results:response)
+                } catch  {
+                    let alert = UIAlertController(title: "Oops!", message: "Something went wrong!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self?.present(alert, animated: true, completion: nil)
+                }
+                self?.setAsSearching(searchOngoing:false)
+            }
+        })
+    }
+    
+    private func setAsSearching(searchOngoing: Bool) {
+        if searchOngoing {
+            mapview.isUserInteractionEnabled = false
+            mapSearchButton.isUserInteractionEnabled = false
+            let str = NSAttributedString(string: "Searching...", attributes: [.foregroundColor : UIColor.darkText, .font : UIFont.italicSystemFont(ofSize: 10)])
+            mapSearchButton.setAttributedTitle(str, for: .normal)
+        }
+        else {
+            mapview.isUserInteractionEnabled = true
+            mapSearchButton.isUserInteractionEnabled = true
+            let str = NSAttributedString(string: "Search this area", attributes: [.foregroundColor : UIColor.darkText, .font : UIFont.italicSystemFont(ofSize: 10)])
+            mapSearchButton.setAttributedTitle(str, for: .normal)
+        }
+    }
+    
+    private func handleLocationResponse(results:MapSearchResults) {
+        self.currentResults = results
+        let annotations = self.getAnnotations(withMapResults : results)
+        self.mapview.removeAnnotations(self.mapview!.annotations)
+        self.mapview.addAnnotations(annotations)
+    }
+
     
     fileprivate func getAnnotations(withMapResults results: MapSearchResults) -> [WikiLocation] {
         var array = [WikiLocation]()
@@ -102,9 +157,6 @@ extension MapViewController : CLLocationManagerDelegate {
 // MARK:MapViewDelegate
 
 extension MapViewController: MKMapViewDelegate {
-    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        mapSearchButton?.isHidden = false
-    }
     
     //https://www.raywenderlich.com/548-mapkit-tutorial-getting-started
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -119,7 +171,7 @@ extension MapViewController: MKMapViewDelegate {
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
-            view.rightCalloutAccessoryView = UIButton(type: .contactAdd)
+            view.rightCalloutAccessoryView = UIButton(type: .infoDark)
         }
         return view
     }
@@ -127,7 +179,7 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let annotation = view.annotation as? WikiLocation,let wikiPage = currentResults?.pages.first(where:{ $0.pageid == annotation.pageId }) else { return }
         
-        let vc = ListenArticleViewController(wikiPage: wikiPage)
+        let vc = ListenArticleViewController(wikiPage: wikiPage,networkController:networkController)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

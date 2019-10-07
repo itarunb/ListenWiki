@@ -14,11 +14,13 @@
 		150453582250E343002F8527 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 150453562250E343002F8527 /* LaunchScreen.storyboard */; };
 		150453602250F052002F8527 /* LocationRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1504535F2250F052002F8527 /* LocationRequestService.swift */; };
 		152C9B79226CC63300142E1A /* WikiLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C9B78226CC63300142E1A /* WikiLocation.swift */; };
+		154520652344D8CB00A560F7 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154520642344D8CB00A560F7 /* NetworkController.swift */; };
 		1576FA5423427F3F00A64003 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1576FA5323427F3F00A64003 /* Util.swift */; };
 		15C9B87523413B3200424727 /* ListenArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9B87423413B3200424727 /* ListenArticleViewController.swift */; };
 		15C9B87723413E9900424727 /* WikiPageExtract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9B87623413E9900424727 /* WikiPageExtract.swift */; };
 		15CB48C4226623EF00340A0C /* MapResultFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB48C3226623EF00340A0C /* MapResultFetcher.swift */; };
 		15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB48C52266297F00340A0C /* MapSeachResults.swift */; };
+		15D0C1E5234529DB00801461 /* PayloadGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D0C1E4234529DB00801461 /* PayloadGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,11 +33,13 @@
 		150453592250E343002F8527 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1504535F2250F052002F8527 /* LocationRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequestService.swift; sourceTree = "<group>"; };
 		152C9B78226CC63300142E1A /* WikiLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiLocation.swift; sourceTree = "<group>"; };
+		154520642344D8CB00A560F7 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		1576FA5323427F3F00A64003 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		15C9B87423413B3200424727 /* ListenArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenArticleViewController.swift; sourceTree = "<group>"; };
 		15C9B87623413E9900424727 /* WikiPageExtract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiPageExtract.swift; sourceTree = "<group>"; };
 		15CB48C3226623EF00340A0C /* MapResultFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapResultFetcher.swift; sourceTree = "<group>"; };
 		15CB48C52266297F00340A0C /* MapSeachResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSeachResults.swift; sourceTree = "<group>"; };
+		15D0C1E4234529DB00801461 /* PayloadGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,21 +72,31 @@
 		1504534C2250E341002F8527 /* ListenWiki */ = {
 			isa = PBXGroup;
 			children = (
+				15124376234BA09D00BF020A /* Deprecated */,
 				1504534D2250E341002F8527 /* AppDelegate.swift */,
 				1504534F2250E341002F8527 /* MapViewController.swift */,
+				15C9B87423413B3200424727 /* ListenArticleViewController.swift */,
 				150453512250E341002F8527 /* Main.storyboard */,
 				150453542250E343002F8527 /* Assets.xcassets */,
 				150453562250E343002F8527 /* LaunchScreen.storyboard */,
 				150453592250E343002F8527 /* Info.plist */,
 				1504535F2250F052002F8527 /* LocationRequestService.swift */,
-				15CB48C3226623EF00340A0C /* MapResultFetcher.swift */,
 				15CB48C52266297F00340A0C /* MapSeachResults.swift */,
 				152C9B78226CC63300142E1A /* WikiLocation.swift */,
-				15C9B87423413B3200424727 /* ListenArticleViewController.swift */,
 				15C9B87623413E9900424727 /* WikiPageExtract.swift */,
 				1576FA5323427F3F00A64003 /* Util.swift */,
+				154520642344D8CB00A560F7 /* NetworkController.swift */,
+				15D0C1E4234529DB00801461 /* PayloadGenerator.swift */,
 			);
 			path = ListenWiki;
+			sourceTree = "<group>";
+		};
+		15124376234BA09D00BF020A /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				15CB48C3226623EF00340A0C /* MapResultFetcher.swift */,
+			);
+			path = Deprecated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				154520652344D8CB00A560F7 /* NetworkController.swift in Sources */,
 				150453502250E341002F8527 /* MapViewController.swift in Sources */,
 				1576FA5423427F3F00A64003 /* Util.swift in Sources */,
 				15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */,
@@ -163,6 +178,7 @@
 				152C9B79226CC63300142E1A /* WikiLocation.swift in Sources */,
 				15C9B87723413E9900424727 /* WikiPageExtract.swift in Sources */,
 				1504534E2250E341002F8527 /* AppDelegate.swift in Sources */,
+				15D0C1E5234529DB00801461 /* PayloadGenerator.swift in Sources */,
 				150453602250F052002F8527 /* LocationRequestService.swift in Sources */,
 				15CB48C4226623EF00340A0C /* MapResultFetcher.swift in Sources */,
 			);
@@ -313,14 +329,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W9PJY5HMM3;
 				INFOPLIST_FILE = ListenWiki/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.greatApps.ListenWiki;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stunningApps.ListenWiki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -331,14 +348,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W9PJY5HMM3;
 				INFOPLIST_FILE = ListenWiki/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.greatApps.ListenWiki;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stunningApps.ListenWiki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

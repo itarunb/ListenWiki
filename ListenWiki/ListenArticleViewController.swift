@@ -14,11 +14,28 @@ class ListenArticleViewController : UIViewController {
     
     let wikiPage : WikiPage
     var wikiPageExtract : WikiPageExtract?
+    let networkController : NetworkController
+    let synthesizer : AVSpeechSynthesizer = AVSpeechSynthesizer()
     
-    fileprivate var session : URLSession = URLSession.shared
-
-    init(wikiPage:WikiPage) {
+    let playPauseButton : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let image = UIImage(named: "playingIcon")
+        button.setImage(image, for: .normal)
+        return button
+    }()
+    
+    let loader : UIActivityIndicatorView = {
+        let ac = UIActivityIndicatorView(style: .whiteLarge)
+        ac.translatesAutoresizingMaskIntoConstraints = false
+        ac.hidesWhenStopped = true
+        ac.color = .white
+        return ac
+    }()
+    
+    init(wikiPage:WikiPage,networkController: NetworkController) {
         self.wikiPage = wikiPage
+        self.networkController = networkController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -26,54 +43,102 @@ class ListenArticleViewController : UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        //https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&explaintext&titles=Delhi
-        let title = Util.createUrlQueryParamFromTitle(title:wikiPage.title)
-        let queryParams : [String : Any] = [ "action"      : "query",
-                                      "prop"        : "extracts",
-                                      "explaintext" : "",
-                                      "titles" : title,
-                                      "format" : "json"]
-        let url = URL(string: "https://en.wikipedia.org/w/api.php")!
-        var components = URLComponents(string: url.absoluteString)!
-        var array = [URLQueryItem]()
-        for (key,value) in queryParams {
-            array.append(URLQueryItem(name: key, value: "\(value)"))
-        }
-        components.queryItems = array
-        let req = URLRequest.init(url: components.url!)
-        session.dataTask(with:req , completionHandler: {
-            (data,response,error) in
-            do {
-                if let validResponse = response as? HTTPURLResponse, 200...299 ~= validResponse.statusCode,let validData = data {
-//                    let json = try JSONSerialization.jsonObject(with: validData, options: [])
-//                    print(json)
-                    let extract = try JSONDecoder().decode(WikiPageExtract.self, from: validData)
-                    print(extract)
-                    self.wikiPageExtract = extract
-                    self.startPlaying()
-                }
-                else {
-//                   print(response)
-//                    print("******")
-                }
-            } catch(let error) {
-              print(error)
- //           print("******")
-           }
-        }).resume()
+        self.title = wikiPage.title
+        self.view.backgroundColor = .black
+        setUpLoader()
+        setUpPlayButton()
+        fectchExtractAndPlay()
     }
     
+    private func setUpLoader() {
+        view.addSubview(loader)
+        NSLayoutConstraint.activate([
+            loader.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loader.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        view.bringSubviewToFront(loader)
+        loader.startAnimating()
+    }
+    
+    private func fectchExtractAndPlay() {
+        let title = Util.createUrlQueryParamFromTitle(title:wikiPage.title)
+        networkController.request(payload: PayloadGenerator(requestType: .fetchArticleText(title: title)).generatePayload(), completion: { [weak self]
+            (result: Result<WikiPageExtract, Error>) in
+              DispatchQueue.main.async { [weak self]  in
+                    do {
+                        let response = try result.get()
+                        self?.handleResponse(extract:response)
+                    } catch  {
+                        let alert = UIAlertController(title: "Oops!", message: "Something went wrong!", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self?.present(alert, animated: true, completion: nil)
+                    }
+            }
+        })
+
+    }
+    
+    func setUpPlayButton() {
+        view.addSubview(playPauseButton)
+        NSLayoutConstraint.activate([
+            playPauseButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            playPauseButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        playPauseButton.isHidden = true
+        playPauseButton.addTarget(self, action: #selector(togglePlay), for: .touchUpInside)
+    }
+    
+    @objc func togglePlay() {
+        if synthesizer.isPaused {
+            togglePlayPauseUI(isAlreadyPlaying: false)
+            synthesizer.continueSpeaking()
+        }
+        else {
+            togglePlayPauseUI(isAlreadyPlaying: true)
+            synthesizer.pauseSpeaking(at: .word)
+        }
+    }
+    
+    private func togglePlayPauseUI(isAlreadyPlaying:Bool) {
+        playPauseButton.isHidden = false
+        if isAlreadyPlaying {
+            playPauseButton.setImage(UIImage(named: "pausedIcon"), for: .normal)
+        }
+        else {
+            playPauseButton.setImage(UIImage(named: "playingIcon"), for: .normal)
+        }
+    }
+    
+    private func handleResponse(extract:WikiPageExtract) {
+        self.wikiPageExtract = extract
+        self.startPlaying()
+    }
+
     func startPlaying() {
         guard let str = wikiPageExtract?.extract else {
+            let alert = UIAlertController(title: "Oops!", message: "Something went wrong!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion:{
+                [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            } )
             return
         }
-        let utternace : AVSpeechUtterance = AVSpeechUtterance.init(string: str)
+       // print(wikiPageExtract?.pageImage)
+        loader.stopAnimating()
         
-        let synthesizer = AVSpeechSynthesizer()
+        let sanitisedExtract = Util.sanitiseExtract(input:str)
+        
+        let utternace : AVSpeechUtterance = AVSpeechUtterance.init(string: sanitisedExtract)
+        
         synthesizer.speak(utternace)
+        togglePlayPauseUI(isAlreadyPlaying: false)
     }
 }

@@ -35,31 +35,18 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yoI-k0-Dda">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97g-ka-mnt">
-                                <rect key="frame" x="118.5" y="63" width="111" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Search this area">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="searchTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qec-qK-uHt"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="yoI-k0-Dda" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1bl-xD-WRo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yoI-k0-Dda" secondAttribute="bottom" id="EUB-ep-NSL"/>
                             <constraint firstItem="yoI-k0-Dda" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kUp-aB-wPy"/>
-                            <constraint firstItem="97g-ka-mnt" firstAttribute="centerX" secondItem="yoI-k0-Dda" secondAttribute="centerX" constant="-13.5" id="pyC-ZP-zqb"/>
-                            <constraint firstItem="97g-ka-mnt" firstAttribute="top" secondItem="yoI-k0-Dda" secondAttribute="top" constant="19" id="xgt-NC-Yke"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yoI-k0-Dda" secondAttribute="trailing" id="y77-uZ-u7Y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="nEj-Gb-O6n"/>
                     <connections>
-                        <outlet property="mapSearchButton" destination="97g-ka-mnt" id="pxs-gZ-Vsc"/>
                         <outlet property="mapview" destination="yoI-k0-Dda" id="2Zs-Sc-nhc"/>
                     </connections>
                 </viewController>

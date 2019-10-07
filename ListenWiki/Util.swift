@@ -16,4 +16,10 @@ class Util {
     static func createUrlQueryParamFromTitle(title : String) -> String {
         return Util.removeWhiteSpaceAndNewline(input: title).replacingOccurrences(of: " ", with: "_")
     }
+    
+    static func sanitiseExtract(input: String) -> String {
+        var str =  input.replacingOccurrences(of: "===", with: "")
+        str = str.replacingOccurrences(of: "==", with: "")
+        return str
+    }
 }
