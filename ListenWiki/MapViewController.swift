@@ -24,16 +24,25 @@ class MapViewController: UIViewController {
     let mapSearchButton : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .cyan
-        let str = NSAttributedString(string: "Search this area", attributes: [.foregroundColor : UIColor.darkText, .font : UIFont.italicSystemFont(ofSize: 10)])
+        button.backgroundColor = UIColor.systemBlue//UIColor(red: 52/255, green: 108/255, blue: 240/255, alpha: 1)
+        let str = NSAttributedString(string: "Search this area", attributes: [.foregroundColor : UIColor.white, .font : UIFont.italicSystemFont(ofSize: 15)])
         button.setAttributedTitle(str, for: .normal)
-        let strHighlited = NSAttributedString(string: "Search this area", attributes: [.foregroundColor : UIColor.darkText.withAlphaComponent(0.5), .font : UIFont.italicSystemFont(ofSize: 10)])
-        button.setAttributedTitle(strHighlited, for: .highlighted)
+//        let strHighlited = NSAttributedString(string: "Search this area", attributes: [.foregroundColor : UIColor.white.withAlphaComponent(0.5), .font : UIFont.italicSystemFont(ofSize: 10)])
+//        button.setAttributedTitle(strHighlited, for: .highlighted)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 10
         return button
     }()
-    
+
+    let mapCurrentLocationButton : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.imageView?.contentMode = .scaleAspectFit
+        let image = UIImage(named: "currentLocationIcon")
+        button.setImage(image, for: .normal)
+        return button
+    }()
+
     
     lazy var locationManager : CLLocationManager = {
         let lm = CLLocationManager()
@@ -48,26 +57,51 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Map"
         setUpMapView()
-        setUpSearchButton()
+        setUpMapButtons()
         LocationRequestService.requestAuthorisationIfReqd(withManagerObj: locationManager)
     }
     
     private func setUpMapView() {
         mapview.showsUserLocation = true
+        mapview.showsCompass = true
+        mapview.showsScale = true
         mapview.delegate = self
     }
     
     
     
-    private func setUpSearchButton() {
+    private func setUpMapButtons() {
         mapview.addSubview(mapSearchButton)
         NSLayoutConstraint.activate([
             mapSearchButton.centerXAnchor.constraint(equalTo: mapview.centerXAnchor),
             mapSearchButton.topAnchor.constraint(equalTo: mapview.topAnchor, constant: 30),
-            mapSearchButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 140)
+            mapSearchButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 140),
+            mapSearchButton.heightAnchor.constraint(equalToConstant: 30)
         ])
         mapSearchButton.addTarget(self, action: #selector(searchTapped), for: .touchUpInside)
+        
+        mapview.addSubview(mapCurrentLocationButton)
+        NSLayoutConstraint.activate([
+            mapCurrentLocationButton.rightAnchor.constraint(equalTo: mapview.rightAnchor,constant: -20),
+            mapCurrentLocationButton.topAnchor.constraint(equalTo: mapSearchButton.bottomAnchor,constant: 30),
+            mapCurrentLocationButton.heightAnchor.constraint(equalToConstant: 40),
+            mapCurrentLocationButton.widthAnchor.constraint(equalToConstant: 30)
+        ])
+        mapCurrentLocationButton.addTarget(self, action: #selector(zoomToCurrentLocation), for: .touchUpInside)
+
     }
+    
+    @objc func zoomToCurrentLocation() {
+        if let _ = mapview.userLocation.location {
+            mapview.setCenter(mapview.userLocation.coordinate, animated: true)
+        }
+        else {
+            let alert = UIAlertController(title: "Can't find your location!", message: "You might need to go to Settings and provide us location access.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
     
     @objc func searchTapped() {
         guard  let mapView = mapview else {
@@ -95,13 +129,13 @@ class MapViewController: UIViewController {
         if searchOngoing {
             mapview.isUserInteractionEnabled = false
             mapSearchButton.isUserInteractionEnabled = false
-            let str = NSAttributedString(string: "Searching...", attributes: [.foregroundColor : UIColor.darkText, .font : UIFont.italicSystemFont(ofSize: 10)])
+            let str = NSAttributedString(string: "Searching...", attributes: [.foregroundColor : UIColor.white, .font : UIFont.italicSystemFont(ofSize: 15)])
             mapSearchButton.setAttributedTitle(str, for: .normal)
         }
         else {
             mapview.isUserInteractionEnabled = true
             mapSearchButton.isUserInteractionEnabled = true
-            let str = NSAttributedString(string: "Search this area", attributes: [.foregroundColor : UIColor.darkText, .font : UIFont.italicSystemFont(ofSize: 10)])
+            let str = NSAttributedString(string: "Search this area", attributes: [.foregroundColor : UIColor.white, .font : UIFont.italicSystemFont(ofSize: 15)])
             mapSearchButton.setAttributedTitle(str, for: .normal)
         }
     }
@@ -141,11 +175,11 @@ class MapViewController: UIViewController {
 
 extension MapViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        LocationRequestService.requestAuthorisationIfReqd(withManagerObj: locationManager)
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -175,7 +209,9 @@ extension MapViewController: MKMapViewDelegate {
             view.animatesWhenAdded = true
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
-            view.rightCalloutAccessoryView = UIButton(type: .infoDark)
+            let button = UIButton(type: .infoDark)
+            button.setImage(UIImage(named: "pageDetailPlayImage"), for: .normal)
+            view.rightCalloutAccessoryView = button
         }
 //        if let str = annotation.imageUrl {
 //                sharedImageDownloader.downloadImage(with: URL(string:str), completed: {
@@ -188,6 +224,7 @@ extension MapViewController: MKMapViewDelegate {
 //        }
         return view
     }
+    
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let annotation = view.annotation as? WikiLocation,let wikiPage = currentResults?.pages.first(where:{ $0.pageid == annotation.pageId }) else { return }
