@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import SDWebImage
 
 
 class ListenArticleViewController : UIViewController {
@@ -16,6 +17,13 @@ class ListenArticleViewController : UIViewController {
     var wikiPageExtract : WikiPageExtract?
     let networkController : NetworkController
     let synthesizer : AVSpeechSynthesizer = AVSpeechSynthesizer()
+    
+    let backGroundImageView : UIImageView = {
+       let imageView = UIImageView()
+       imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
     
     let playPauseButton : UIButton = {
         let button = UIButton()
@@ -51,10 +59,23 @@ class ListenArticleViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = wikiPage.title
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .clear
         setUpLoader()
         setUpPlayButton()
+        setUpBackgroundImageView()
         fectchExtractAndPlay()
+    }
+    
+    private func setUpBackgroundImageView() {
+        view.addSubview(backGroundImageView)
+        NSLayoutConstraint.activate([
+            backGroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backGroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backGroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backGroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        backGroundImageView.image = UIImage(named: "wikiPediaBgImage")
+        view.sendSubviewToBack(backGroundImageView)
     }
     
     private func setUpLoader() {
@@ -120,6 +141,30 @@ class ListenArticleViewController : UIViewController {
         self.wikiPageExtract = extract
         self.startPlaying()
     }
+    
+    let sharedImageDownloader = SDWebImageDownloader.shared()
+    
+//    private func loadBackgroundImage() {
+//        if let imageFileName = wikiPageExtract?.pageImage {
+//            let sanitisedTitle = Util.createUrlQueryParamFromTitle(title: wikiPage.title)
+//            let str = "https://en.wikipedia.org/wiki/" + sanitisedTitle + "#/media/File:" + imageFileName
+//            let combinedUrl = URL(string:str)
+//            backGroundImageView.sd_setImage(with: combinedUrl, completed: {
+//                [weak self] (image,error,type,url) in
+//                self?.backGroundImageView.image = image
+//            })
+//            sharedImageDownloader.downloadImage(with: combinedUrl, completed: {
+//                               [weak self] (image,data,error,finished) in
+//                                if finished {
+//                                    print("did finish loading image")
+//                                }
+//                                else  {
+//                                    print("did not finish loading image")
+//
+//                }
+//                            })
+//        }
+//    }
 
     func startPlaying() {
         guard let str = wikiPageExtract?.extract else {
@@ -133,7 +178,6 @@ class ListenArticleViewController : UIViewController {
         }
        // print(wikiPageExtract?.pageImage)
         loader.stopAnimating()
-        
         let sanitisedExtract = Util.sanitiseExtract(input:str)
         
         let utternace : AVSpeechUtterance = AVSpeechUtterance.init(string: sanitisedExtract)

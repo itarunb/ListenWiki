@@ -8,11 +8,13 @@
 
 import UIKit
 import MapKit
+import SDWebImage
 
 class MapViewController: UIViewController {
 
     @IBOutlet var mapview : MKMapView!
     
+    let sharedImageDownloader = SDWebImageDownloader.shared()
         
     fileprivate var currentResults : MapSearchResults?
     
@@ -119,7 +121,7 @@ class MapViewController: UIViewController {
                 continue
             }
             let title = page.title
-            let image = page.thumbnail?.source ?? "NAN"
+            let image = page.thumbnail?.source
             let annotationCoordinates = CLLocationCoordinate2D(latitude: lat, longitude: long)
             array.append(WikiLocation(title: title, imageUrl: image,pageId:page.pageid, coordinate:annotationCoordinates ))
         }
@@ -166,13 +168,24 @@ extension MapViewController: MKMapViewDelegate {
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
             as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
+            dequeuedView.animatesWhenAdded = true
             view = dequeuedView
         } else {
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.animatesWhenAdded = true
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .infoDark)
         }
+//        if let str = annotation.imageUrl {
+//                sharedImageDownloader.downloadImage(with: URL(string:str), completed: {
+//                   [weak self] (image,data,error,finished) in
+//                    if finished {
+//                        //print("did finish loading image")
+//                        view.glyphImage = image
+//                    }
+//                })
+//        }
         return view
     }
     
