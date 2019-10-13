@@ -24,7 +24,7 @@ class MapViewController: UIViewController {
     let mapSearchButton : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(red: 151, green: 195, blue: 192, alpha: 1)
+        button.backgroundColor = .cyan
         let str = NSAttributedString(string: "Search this area", attributes: [.foregroundColor : UIColor.darkText, .font : UIFont.italicSystemFont(ofSize: 10)])
         button.setAttributedTitle(str, for: .normal)
         let strHighlited = NSAttributedString(string: "Search this area", attributes: [.foregroundColor : UIColor.darkText.withAlphaComponent(0.5), .font : UIFont.italicSystemFont(ofSize: 10)])

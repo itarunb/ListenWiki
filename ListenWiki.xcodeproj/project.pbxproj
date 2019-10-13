@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -128,7 +128,6 @@
 				8297ABEB8E42F859AB517F1B /* Pods-ListenWiki.debug.xcconfig */,
 				1D15321960DD0B27DB22D484 /* Pods-ListenWiki.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -405,14 +404,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W9PJY5HMM3;
+				DEVELOPMENT_TEAM = VFU4758HP3;
 				INFOPLIST_FILE = ListenWiki/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stunningApps.ListenWiki;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabulousApps.ListenWiki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -424,16 +423,18 @@
 			baseConfigurationReference = 1D15321960DD0B27DB22D484 /* Pods-ListenWiki.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W9PJY5HMM3;
+				DEVELOPMENT_TEAM = VFU4758HP3;
 				INFOPLIST_FILE = ListenWiki/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stunningApps.ListenWiki;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabulousApps.ListenWiki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
