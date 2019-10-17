@@ -180,9 +180,37 @@ class ListenArticleViewController : UIViewController {
         loader.stopAnimating()
         let sanitisedExtract = Util.sanitiseExtract(input:str)
         
+
         let utternace : AVSpeechUtterance = AVSpeechUtterance.init(string: sanitisedExtract)
-        
+        synthesizer.delegate = self
         synthesizer.speak(utternace)
         togglePlayPauseUI(isAlreadyPlaying: false)
     }
+}
+
+
+extension ListenArticleViewController : AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        togglePlayPauseUI(isAlreadyPlaying: false)
+
+    }
+
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        let alert = UIAlertController(title: "Article Finished", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
+           togglePlayPauseUI(isAlreadyPlaying: true)
+       }
+
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {
+           
+       }
+
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
+           
+       }
+
 }
