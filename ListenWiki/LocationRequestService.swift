@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 
 struct LocationRequestService  {
-    
     static func requestAuthorisationIfReqd(withManagerObj locationManager: CLLocationManager) {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedAlways,.authorizedWhenInUse:
@@ -19,7 +18,7 @@ struct LocationRequestService  {
         case .denied,.restricted:
             print("denied/restricted location access")
         case .notDetermined:
-            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
         }
     }
 }
