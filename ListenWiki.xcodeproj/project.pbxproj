@@ -16,7 +16,10 @@
 		150453602250F052002F8527 /* LocationRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1504535F2250F052002F8527 /* LocationRequestService.swift */; };
 		152C9B79226CC63300142E1A /* WikiLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C9B78226CC63300142E1A /* WikiLocation.swift */; };
 		154520652344D8CB00A560F7 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154520642344D8CB00A560F7 /* NetworkController.swift */; };
+		156EBC3A235C2B52005F4932 /* TutorialPagedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156EBC39235C2B52005F4932 /* TutorialPagedViewController.swift */; };
+		156EBC3C235C341C005F4932 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156EBC3B235C341C005F4932 /* TutorialViewController.swift */; };
 		1576FA5423427F3F00A64003 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1576FA5323427F3F00A64003 /* Util.swift */; };
+		1583FC2C238C1BAD0000D83E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1583FC2B238C1BAD0000D83E /* NavigationController.swift */; };
 		15C9B87523413B3200424727 /* ListenArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9B87423413B3200424727 /* ListenArticleViewController.swift */; };
 		15C9B87723413E9900424727 /* WikiPageExtract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9B87623413E9900424727 /* WikiPageExtract.swift */; };
 		15CB48C4226623EF00340A0C /* MapResultFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB48C3226623EF00340A0C /* MapResultFetcher.swift */; };
@@ -35,7 +38,10 @@
 		1504535F2250F052002F8527 /* LocationRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequestService.swift; sourceTree = "<group>"; };
 		152C9B78226CC63300142E1A /* WikiLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiLocation.swift; sourceTree = "<group>"; };
 		154520642344D8CB00A560F7 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		156EBC39235C2B52005F4932 /* TutorialPagedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPagedViewController.swift; sourceTree = "<group>"; };
+		156EBC3B235C341C005F4932 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		1576FA5323427F3F00A64003 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		1583FC2B238C1BAD0000D83E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		15C9B87423413B3200424727 /* ListenArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenArticleViewController.swift; sourceTree = "<group>"; };
 		15C9B87623413E9900424727 /* WikiPageExtract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiPageExtract.swift; sourceTree = "<group>"; };
 		15CB48C3226623EF00340A0C /* MapResultFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapResultFetcher.swift; sourceTree = "<group>"; };
@@ -83,8 +89,11 @@
 				1504534D2250E341002F8527 /* AppDelegate.swift */,
 				1504534F2250E341002F8527 /* MapViewController.swift */,
 				15C9B87423413B3200424727 /* ListenArticleViewController.swift */,
+				156EBC39235C2B52005F4932 /* TutorialPagedViewController.swift */,
+				156EBC3B235C341C005F4932 /* TutorialViewController.swift */,
 				150453512250E341002F8527 /* Main.storyboard */,
 				150453562250E343002F8527 /* LaunchScreen.storyboard */,
+				1583FC2B238C1BAD0000D83E /* NavigationController.swift */,
 				150453592250E343002F8527 /* Info.plist */,
 				1504535F2250F052002F8527 /* LocationRequestService.swift */,
 				15CB48C52266297F00340A0C /* MapSeachResults.swift */,
@@ -251,7 +260,10 @@
 				1576FA5423427F3F00A64003 /* Util.swift in Sources */,
 				15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */,
 				15C9B87523413B3200424727 /* ListenArticleViewController.swift in Sources */,
+				1583FC2C238C1BAD0000D83E /* NavigationController.swift in Sources */,
 				152C9B79226CC63300142E1A /* WikiLocation.swift in Sources */,
+				156EBC3C235C341C005F4932 /* TutorialViewController.swift in Sources */,
+				156EBC3A235C2B52005F4932 /* TutorialPagedViewController.swift in Sources */,
 				15C9B87723413E9900424727 /* WikiPageExtract.swift in Sources */,
 				1504534E2250E341002F8527 /* AppDelegate.swift in Sources */,
 				15D0C1E5234529DB00801461 /* PayloadGenerator.swift in Sources */,
@@ -404,7 +416,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = VFU4758HP3;
 				INFOPLIST_FILE = ListenWiki/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -412,8 +424,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fabulousApps.ListenWiki;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabulousApps.ListenWiki.Prod;
+				PRODUCT_NAME = ListenWiki;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -426,7 +438,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = VFU4758HP3;
 				INFOPLIST_FILE = ListenWiki/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -434,8 +446,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fabulousApps.ListenWiki;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabulousApps.ListenWiki.Prod;
+				PRODUCT_NAME = ListenWiki;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
