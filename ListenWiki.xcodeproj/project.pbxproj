@@ -16,6 +16,9 @@
 		150453602250F052002F8527 /* LocationRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1504535F2250F052002F8527 /* LocationRequestService.swift */; };
 		152C9B79226CC63300142E1A /* WikiLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C9B78226CC63300142E1A /* WikiLocation.swift */; };
 		154520652344D8CB00A560F7 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154520642344D8CB00A560F7 /* NetworkController.swift */; };
+		154F68422520AEC200C949FC /* LanguageSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154F68412520AEC100C949FC /* LanguageSelectorViewController.swift */; };
+		154F68442520B21100C949FC /* LanguagePickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154F68432520B21100C949FC /* LanguagePickerViewDataSource.swift */; };
+		154F68462520B49300C949FC /* LanguageListCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154F68452520B49300C949FC /* LanguageListCreator.swift */; };
 		1576FA5423427F3F00A64003 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1576FA5323427F3F00A64003 /* Util.swift */; };
 		15C9B87523413B3200424727 /* ListenArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9B87423413B3200424727 /* ListenArticleViewController.swift */; };
 		15C9B87723413E9900424727 /* WikiPageExtract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9B87623413E9900424727 /* WikiPageExtract.swift */; };
@@ -35,6 +38,9 @@
 		1504535F2250F052002F8527 /* LocationRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequestService.swift; sourceTree = "<group>"; };
 		152C9B78226CC63300142E1A /* WikiLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiLocation.swift; sourceTree = "<group>"; };
 		154520642344D8CB00A560F7 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		154F68412520AEC100C949FC /* LanguageSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectorViewController.swift; sourceTree = "<group>"; };
+		154F68432520B21100C949FC /* LanguagePickerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerViewDataSource.swift; sourceTree = "<group>"; };
+		154F68452520B49300C949FC /* LanguageListCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageListCreator.swift; sourceTree = "<group>"; };
 		1576FA5323427F3F00A64003 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		15C9B87423413B3200424727 /* ListenArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenArticleViewController.swift; sourceTree = "<group>"; };
 		15C9B87623413E9900424727 /* WikiPageExtract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiPageExtract.swift; sourceTree = "<group>"; };
@@ -93,6 +99,9 @@
 				1576FA5323427F3F00A64003 /* Util.swift */,
 				154520642344D8CB00A560F7 /* NetworkController.swift */,
 				15D0C1E4234529DB00801461 /* PayloadGenerator.swift */,
+				154F68412520AEC100C949FC /* LanguageSelectorViewController.swift */,
+				154F68432520B21100C949FC /* LanguagePickerViewDataSource.swift */,
+				154F68452520B49300C949FC /* LanguageListCreator.swift */,
 				15124376234BA09D00BF020A /* Deprecated */,
 			);
 			path = ListenWiki;
@@ -248,12 +257,15 @@
 			files = (
 				154520652344D8CB00A560F7 /* NetworkController.swift in Sources */,
 				150453502250E341002F8527 /* MapViewController.swift in Sources */,
+				154F68442520B21100C949FC /* LanguagePickerViewDataSource.swift in Sources */,
 				1576FA5423427F3F00A64003 /* Util.swift in Sources */,
+				154F68422520AEC200C949FC /* LanguageSelectorViewController.swift in Sources */,
 				15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */,
 				15C9B87523413B3200424727 /* ListenArticleViewController.swift in Sources */,
 				152C9B79226CC63300142E1A /* WikiLocation.swift in Sources */,
 				15C9B87723413E9900424727 /* WikiPageExtract.swift in Sources */,
 				1504534E2250E341002F8527 /* AppDelegate.swift in Sources */,
+				154F68462520B49300C949FC /* LanguageListCreator.swift in Sources */,
 				15D0C1E5234529DB00801461 /* PayloadGenerator.swift in Sources */,
 				150453602250F052002F8527 /* LocationRequestService.swift in Sources */,
 				15CB48C4226623EF00340A0C /* MapResultFetcher.swift in Sources */,

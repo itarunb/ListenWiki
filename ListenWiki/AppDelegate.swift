@@ -18,6 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setUpAudioSession()
+        if let nav = window?.rootViewController as? UINavigationController {
+            let dataSource = LanguagePickerViewDataSource(languages: LanguageCreator.getLanguages())
+            nav.setViewControllers([LanguageSelectorViewController(pickerDataSource: dataSource)], animated: true)
+        } else {
+            print("didnt find root as UINavigationController")
+        }
         return true
     }
 

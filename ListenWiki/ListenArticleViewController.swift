@@ -179,9 +179,8 @@ class ListenArticleViewController : UIViewController {
        // print(wikiPageExtract?.pageImage)
         loader.stopAnimating()
         let sanitisedExtract = Util.sanitiseExtract(input:str)
-        
-
         let utternace : AVSpeechUtterance = AVSpeechUtterance.init(string: sanitisedExtract)
+        //utternace.voice = AVSpeechSynthesisVoice(language: "ar-SA")
         synthesizer.delegate = self
         synthesizer.speak(utternace)
         togglePlayPauseUI(isAlreadyPlaying: false)
