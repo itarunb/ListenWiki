@@ -27,7 +27,7 @@ struct MapSearchResults  : Decodable {
     
     init(from decoder: Decoder) throws {
         let a = try decoder.container(keyedBy: GenericCodingKeys.self)
-        print(a.allKeys)
+        //print(a.allKeys)
         let b = try a.nestedContainer(keyedBy: GenericCodingKeys.self, forKey: GenericCodingKeys(stringValue: "query")!)
         let c = try b.nestedContainer(keyedBy: GenericCodingKeys.self, forKey: GenericCodingKeys(stringValue: "pages")!)
         self.pages = [WikiPage]()

@@ -25,6 +25,7 @@
 		15CB48C4226623EF00340A0C /* MapResultFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB48C3226623EF00340A0C /* MapResultFetcher.swift */; };
 		15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB48C52266297F00340A0C /* MapSeachResults.swift */; };
 		15D0C1E5234529DB00801461 /* PayloadGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D0C1E4234529DB00801461 /* PayloadGenerator.swift */; };
+		A03D262325D7D4C00030B12C /* LanguageSelectionLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03D262225D7D4C00030B12C /* LanguageSelectionLocalStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		1D15321960DD0B27DB22D484 /* Pods-ListenWiki.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListenWiki.release.xcconfig"; path = "Target Support Files/Pods-ListenWiki/Pods-ListenWiki.release.xcconfig"; sourceTree = "<group>"; };
 		3820AA4EA9D52148D91C18D0 /* Pods_ListenWiki.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ListenWiki.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8297ABEB8E42F859AB517F1B /* Pods-ListenWiki.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListenWiki.debug.xcconfig"; path = "Target Support Files/Pods-ListenWiki/Pods-ListenWiki.debug.xcconfig"; sourceTree = "<group>"; };
+		A03D262225D7D4C00030B12C /* LanguageSelectionLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionLocalStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				154F68432520B21100C949FC /* LanguagePickerViewDataSource.swift */,
 				154F68452520B49300C949FC /* LanguageListCreator.swift */,
 				15124376234BA09D00BF020A /* Deprecated */,
+				A03D262225D7D4C00030B12C /* LanguageSelectionLocalStorage.swift */,
 			);
 			path = ListenWiki;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				1576FA5423427F3F00A64003 /* Util.swift in Sources */,
 				154F68422520AEC200C949FC /* LanguageSelectorViewController.swift in Sources */,
 				15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */,
+				A03D262325D7D4C00030B12C /* LanguageSelectionLocalStorage.swift in Sources */,
 				15C9B87523413B3200424727 /* ListenArticleViewController.swift in Sources */,
 				152C9B79226CC63300142E1A /* WikiLocation.swift in Sources */,
 				15C9B87723413E9900424727 /* WikiPageExtract.swift in Sources */,

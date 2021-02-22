@@ -14,19 +14,42 @@ struct Language {
     let bcp47Code       :String
 }
 
-class LanguagePickerViewDataSource : NSObject {
-    private let languages : [Language]
+class LanguagePickerViewDataSource : NSObject {    
+    private let allLanguages : [Language]
+    private var selectedLanguage : Language?
     
     init(languages : [Language]) {
-        self.languages = languages
+        self.allLanguages = languages
     }
     
     func getLanguageAtRow(_ row: Int) -> Language? {
-        guard row < languages.count else {
+        guard row < allLanguages.count else {
             return nil
         }
         
-        return languages[row]
+        return allLanguages[row]
+    }
+    
+    func getSelectedLanguage() -> Language? {
+        return selectedLanguage
+    }
+    
+    func setSelectedLanguage(_ language: Language) {
+        selectedLanguage = language
+    }
+    
+    func languageSelectedAtIndex(_ index: Int) {
+        guard index < allLanguages.count else {
+            selectedLanguage = nil
+            return
+        }
+        setSelectedLanguage(allLanguages[index])
+    }
+    
+    func getSelectedLanguageIndex() -> Int {
+        return allLanguages.firstIndex(where: {
+            selectedLanguage?.bcp47Code == $0.bcp47Code
+        }) ?? 0
     }
 }
 
@@ -37,6 +60,6 @@ extension LanguagePickerViewDataSource : UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        languages.count
+        allLanguages.count
     }
 }

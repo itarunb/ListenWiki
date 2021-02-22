@@ -41,8 +41,11 @@ class ListenArticleViewController : UIViewController {
         return ac
     }()
     
-    init(wikiPage:WikiPage,networkController: NetworkController) {
+    private let language : Language
+    
+    init(wikiPage:WikiPage,networkController: NetworkController , language: Language) {
         self.wikiPage = wikiPage
+        self.language = language
         self.networkController = networkController
         super.init(nibName: nil, bundle: nil)
     }
@@ -180,7 +183,8 @@ class ListenArticleViewController : UIViewController {
         loader.stopAnimating()
         let sanitisedExtract = Util.sanitiseExtract(input:str)
         let utternace : AVSpeechUtterance = AVSpeechUtterance.init(string: sanitisedExtract)
-        //utternace.voice = AVSpeechSynthesisVoice(language: "ar-SA")
+        let voice = AVSpeechSynthesisVoice(language: language.bcp47Code)
+        utternace.voice = voice
         synthesizer.delegate = self
         synthesizer.speak(utternace)
         togglePlayPauseUI(isAlreadyPlaying: false)

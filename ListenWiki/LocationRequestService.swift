@@ -14,9 +14,9 @@ struct LocationRequestService  {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedAlways,.authorizedWhenInUse:
             locationManager.requestLocation()
-            print("authorised location access")
+            //print("authorised location access")
         case .denied,.restricted:
-            print("denied/restricted location access")
+            //print("denied/restricted location access")
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         }

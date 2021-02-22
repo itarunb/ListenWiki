@@ -13,16 +13,23 @@ import AVKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var navigation : UINavigationController?
+    var mapVC : MapViewController?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setUpAudioSession()
-        if let nav = window?.rootViewController as? UINavigationController {
-            let dataSource = LanguagePickerViewDataSource(languages: LanguageCreator.getLanguages())
-            nav.setViewControllers([LanguageSelectorViewController(pickerDataSource: dataSource)], animated: true)
+        let availableLanguageDetector = LanguageListCreator()
+        self.navigation = (window?.rootViewController) as? UINavigationController
+        if let code = LanguageSelectionLocalStorage().getLanguageSelectedCode() , let language = availableLanguageDetector.getLanguageForCode(code) {
+            launchMapsWithLanguage(language)
         } else {
-            print("didnt find root as UINavigationController")
+            let dataSource = LanguagePickerViewDataSource(languages: availableLanguageDetector.availableLanguages)
+            let viewController = LanguageSelectorViewController(pickerDataSource: dataSource)
+            viewController.selectionDone = {  [weak self] (languageSelected) in
+                self?.didPickLanguage(languageSelected)
+            }
+            window?.rootViewController = viewController
         }
         return true
     }
@@ -47,8 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        LanguageSelectionLocalStorage().setLanguageSelected("")
     }
 
+}
+
+extension AppDelegate {
     private func setUpAudioSession() {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback,mode: .spokenAudio)
@@ -57,5 +68,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           print(error)
         }
     }
+    
+    func didPickLanguage(_ language: Language?) {
+        let unwrappedLanguage = language ?? LanguageListCreator.defaultSelectedLanguage
+        LanguageSelectionLocalStorage().setLanguageSelected(unwrappedLanguage.bcp47Code)
+        if let mapVC = mapVC {
+            mapVC.dismiss(animated: true, completion: { [weak mapVC] in
+                mapVC?.language = unwrappedLanguage
+            })
+        } else {
+            launchMapsWithLanguage(unwrappedLanguage)
+        }
+    }
+        
+    
+    @objc private func presentLanguageVC() {
+        let selectedLanguage = mapVC?.language ?? LanguageListCreator.defaultSelectedLanguage
+        let availableLanguageDetector = LanguageListCreator()
+        let dataSource = LanguagePickerViewDataSource(languages: availableLanguageDetector.availableLanguages)
+        dataSource.setSelectedLanguage(selectedLanguage)
+        let viewController = LanguageSelectorViewController(pickerDataSource: dataSource)
+        viewController.selectionDone = { [weak self] (language) in
+            self?.didPickLanguage(language)
+        }
+        mapVC?.present(viewController, animated: true, completion: nil)
+    }
+    
+    func launchMapsWithLanguage(_ language: Language) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mapsViewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        mapsViewController.language = language
+        mapsViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Change Language", style: .plain, target: self, action: #selector(presentLanguageVC))
+        mapsViewController.networkController = NetworkController(language.wikiPageCode)
+        self.mapVC = mapsViewController
+        window?.rootViewController = navigation
+        navigation?.setViewControllers([mapsViewController], animated: true)
+    }
 }
-

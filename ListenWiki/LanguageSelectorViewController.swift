@@ -11,6 +11,17 @@ import UIKit
 class LanguageSelectorViewController: UIViewController {
 
     private let pickerDataSource : LanguagePickerViewDataSource
+    private var pickerView : UIPickerView?
+    
+    private let doneButton : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let attrStr = NSAttributedString(string: "Done", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemBlue , NSAttributedString.Key.font : UIFont.systemFont(ofSize:20, weight: .medium)])
+        button.setAttributedTitle(attrStr, for: .normal)
+        return button
+    }()
+    
+    var selectionDone : ((Language?) -> Void)?
     
     init(pickerDataSource : LanguagePickerViewDataSource) {
         self.pickerDataSource = pickerDataSource
@@ -29,6 +40,9 @@ class LanguageSelectorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Select Language"
+        doneButton.addTarget(self, action: #selector(doneTapped), for: .touchUpInside)
+        pickerView?.selectRow(pickerDataSource.getSelectedLanguageIndex(), inComponent: 0, animated: true)
     }
     
     private func addComponentsViews() {
@@ -42,13 +56,24 @@ class LanguageSelectorViewController: UIViewController {
             picker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             picker.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        self.pickerView = picker
+        
+        view.addSubview(doneButton)
+        NSLayoutConstraint.activate([
+            doneButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10),
+            doneButton.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: -10)
+        ])
+    }
+    
+    @objc private func doneTapped() {
+        selectionDone?(pickerDataSource.getSelectedLanguage())
     }
 }
 
 
 extension LanguageSelectorViewController : UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        pickerDataSource.languageSelectedAtIndex(row)
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
@@ -61,7 +86,7 @@ extension LanguageSelectorViewController : UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return 200
+        return view.bounds.width
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {

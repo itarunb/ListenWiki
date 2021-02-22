@@ -18,8 +18,17 @@ class MapViewController: UIViewController {
         
     fileprivate var currentResults : MapSearchResults?
     
-    let networkController = NetworkController()
+    var language : Language? {
+        didSet {
+            currentResults = nil
+            self.networkController = NetworkController(language?.wikiPageCode ?? "en")
+            if let mapview = mapview {
+                mapview.removeAnnotations(mapview.annotations)
+            }
+        }
+    }
     
+    var networkController : NetworkController?
     
     let mapSearchButton : UIButton = {
         let button = UIButton()
@@ -55,7 +64,6 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Map"
         setUpMapView()
         setUpMapButtons()
         LocationRequestService.requestAuthorisationIfReqd(withManagerObj: locationManager)
@@ -84,8 +92,8 @@ class MapViewController: UIViewController {
         NSLayoutConstraint.activate([
             mapCurrentLocationButton.rightAnchor.constraint(equalTo: mapview.rightAnchor,constant: -20),
             mapCurrentLocationButton.topAnchor.constraint(equalTo: mapSearchButton.bottomAnchor,constant: 30),
-            mapCurrentLocationButton.heightAnchor.constraint(equalToConstant: 40),
-            mapCurrentLocationButton.widthAnchor.constraint(equalToConstant: 30)
+            mapCurrentLocationButton.heightAnchor.constraint(equalToConstant: 60),
+            mapCurrentLocationButton.widthAnchor.constraint(equalToConstant: 40)
         ])
         mapCurrentLocationButton.addTarget(self, action: #selector(zoomToCurrentLocation), for: .touchUpInside)
 
@@ -109,7 +117,7 @@ class MapViewController: UIViewController {
         }
         self.setAsSearching(searchOngoing:true)
         let region  = mapView.region
-        networkController.request(payload: PayloadGenerator(requestType: .fetchLocations(region: region)).generatePayload(), completion:{ [weak self]
+        networkController?.request(payload: PayloadGenerator(requestType: .fetchLocations(region: region)).generatePayload(), completion:{ [weak self]
             (result: Result<MapSearchResults, Error>) in
             DispatchQueue.main.async { [weak self] in
                 do {
@@ -227,9 +235,9 @@ extension MapViewController: MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let annotation = view.annotation as? WikiLocation,let wikiPage = currentResults?.pages.first(where:{ $0.pageid == annotation.pageId }) else { return }
+        guard let networkController = networkController,let annotation = view.annotation as? WikiLocation,let wikiPage = currentResults?.pages.first(where:{ $0.pageid == annotation.pageId }) else { return }
         
-        let vc = ListenArticleViewController(wikiPage: wikiPage,networkController:networkController)
+        let vc = ListenArticleViewController(wikiPage: wikiPage,networkController: networkController, language: language ?? LanguageListCreator.defaultSelectedLanguage)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
