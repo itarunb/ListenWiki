@@ -13,6 +13,14 @@ class LanguageSelectorViewController: UIViewController {
     private let pickerDataSource : LanguagePickerViewDataSource
     private var pickerView : UIPickerView?
     
+    private let bgImageview : UIImageView = {
+       let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "languageChooseBackground")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
     private let doneButton : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +54,14 @@ class LanguageSelectorViewController: UIViewController {
     }
     
     private func addComponentsViews() {
+        view.addSubview(bgImageview)
+        NSLayoutConstraint.activate([
+            bgImageview.leftAnchor.constraint(equalTo: view.leftAnchor),
+            bgImageview.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10),
+            bgImageview.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            bgImageview.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+        
         let picker = UIPickerView(frame: .zero)
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.dataSource = pickerDataSource
@@ -80,13 +96,13 @@ extension LanguageSelectorViewController : UIPickerViewDelegate {
         guard let language = pickerDataSource.getLanguageAtRow(row) else {
             return NSAttributedString()
         }
-        let attributes = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14),
-                          NSAttributedString.Key.foregroundColor : UIColor.blue]
+        let attributes = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: .semibold),
+                          NSAttributedString.Key.foregroundColor : UIColor.white]
         return NSAttributedString(string: language.displayStr, attributes: attributes)
     }
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return view.bounds.width
+        return 300
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {

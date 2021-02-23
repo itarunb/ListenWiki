@@ -16,7 +16,7 @@ struct LocationRequestService  {
             locationManager.requestLocation()
             //print("authorised location access")
         case .denied,.restricted:
-            //print("denied/restricted location access")
+            print("denied/restricted location access")
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         }
