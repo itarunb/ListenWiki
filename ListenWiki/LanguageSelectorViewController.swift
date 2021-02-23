@@ -13,6 +13,18 @@ class LanguageSelectorViewController: UIViewController {
     private let pickerDataSource : LanguagePickerViewDataSource
     private var pickerView : UIPickerView?
     
+    private var topLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "You will be listening to the audio in the language of your choice."
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    
     private let bgImageview : UIImageView = {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +90,14 @@ class LanguageSelectorViewController: UIViewController {
         NSLayoutConstraint.activate([
             doneButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10),
             doneButton.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: -10)
+        ])
+        
+        view.addSubview(topLabel)
+        NSLayoutConstraint.activate([
+            topLabel.bottomAnchor.constraint(equalTo: picker.topAnchor, constant: -20),
+            topLabel.centerXAnchor.constraint(equalTo: picker.centerXAnchor),
+            topLabel.leftAnchor.constraint(greaterThanOrEqualTo: view.leftAnchor, constant: 30),
+            topLabel.rightAnchor.constraint(lessThanOrEqualTo: view.rightAnchor, constant: -30),
         ])
     }
     

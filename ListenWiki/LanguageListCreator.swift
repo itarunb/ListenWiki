@@ -19,7 +19,7 @@ struct LanguageListCreator {
     }
     
     static private func getLanguages() -> [Language] {
-        let availableLangugagesCode = AVSpeechSynthesisVoice.speechVoices().map({ $0.language })
+        let availableLangugagesCode = Array(Set(AVSpeechSynthesisVoice.speechVoices().map({ $0.language })))
         var temp = [Language]()
         let regionCodes = Locale.isoRegionCodes //.map({$0.lowercased()})
         for languageCode in availableLangugagesCode {
