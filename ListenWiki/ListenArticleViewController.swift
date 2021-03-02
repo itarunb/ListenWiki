@@ -77,7 +77,7 @@ class ListenArticleViewController : UIViewController {
             backGroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
             backGroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        backGroundImageView.image = UIImage(named: "wikiPediaBgImage")
+        backGroundImageView.image = UIImage(named: "wikiPediaBgImage1")
         view.sendSubviewToBack(backGroundImageView)
     }
     
