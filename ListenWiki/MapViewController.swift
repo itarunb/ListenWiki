@@ -124,7 +124,8 @@ class MapViewController: UIViewController {
                     let response = try result.get()
                     self?.handleLocationResponse(results:response)
                 } catch  {
-                    let alert = UIAlertController(title: "Oops!", message: "Something went wrong!", preferredStyle: .alert)
+                    let languageName = self?.language?.displayStr ?? "your chosen language"
+                    let alert = UIAlertController(title: "Oops! Soemthing went wrong", message: "Looks like there are not many locations with Wikipedia Pages in \(languageName). You might want to zoom in/out or change the area of search", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self?.present(alert, animated: true, completion: nil)
                 }

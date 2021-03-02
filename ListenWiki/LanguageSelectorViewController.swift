@@ -16,7 +16,7 @@ class LanguageSelectorViewController: UIViewController {
     private var topLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "You will be listening to the audio in the language of your choice."
+        label.text = "You will be listening to Wikipedia page audio in the language of your choice."
         label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         label.textColor = .white
         label.textAlignment = .center
