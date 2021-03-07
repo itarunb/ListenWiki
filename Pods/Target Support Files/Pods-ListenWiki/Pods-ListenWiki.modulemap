@@ -1,6 +1,0 @@
-framework module Pods_ListenWiki {
-  umbrella header "Pods-ListenWiki-umbrella.h"
-
-  export *
-  module * { export * }
-}

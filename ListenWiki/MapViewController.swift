@@ -13,9 +13,7 @@ import SDWebImage
 class MapViewController: UIViewController {
 
     @IBOutlet var mapview : MKMapView!
-    
-    let sharedImageDownloader = SDWebImageDownloader.shared()
-        
+            
     fileprivate var currentResults : MapSearchResults?
     
     var language : Language? {

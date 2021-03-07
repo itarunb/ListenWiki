@@ -145,7 +145,6 @@ class ListenArticleViewController : UIViewController {
         self.startPlaying()
     }
     
-    let sharedImageDownloader = SDWebImageDownloader.shared()
     
 //    private func loadBackgroundImage() {
 //        if let imageFileName = wikiPageExtract?.pageImage {
