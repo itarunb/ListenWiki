@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setUpAudioSession()
-        Mixpanel.initialize(token: AnalyticsContants.Mixpanel.mixpanelToken)
+        setUpMixpanel()
         Mixpanel.mainInstance().track(event: AnalyticsContants.Mixpanel.EventName.appLaunch)
         let availableLanguageDetector = LanguageListCreator()
         self.navigation = (window?.rootViewController) as? UINavigationController
@@ -105,5 +105,10 @@ extension AppDelegate {
         self.mapVC = mapsViewController
         window?.rootViewController = navigation
         navigation?.setViewControllers([mapsViewController], animated: true)
+    }
+    
+    private func setUpMixpanel() {
+        Mixpanel.initialize(token: AnalyticsContants.Mixpanel.mixpanelToken)
+        Mixpanel.mainInstance().loggingEnabled = true
     }
 }
