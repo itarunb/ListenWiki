@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import Mixpanel
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         setUpAudioSession()
         setUpMixpanel()
+        FirebaseApp.configure()
         Mixpanel.mainInstance().track(event: AnalyticsContants.Mixpanel.EventName.appLaunch)
         let availableLanguageDetector = LanguageListCreator()
         self.navigation = (window?.rootViewController) as? UINavigationController
