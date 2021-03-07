@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setUpAudioSession()
+        Mixpanel.initialize(token: AnalyticsContants.Mixpanel.mixpanelToken)
+        Mixpanel.mainInstance().track(event: AnalyticsContants.Mixpanel.EventName.appLaunch)
         let availableLanguageDetector = LanguageListCreator()
         self.navigation = (window?.rootViewController) as? UINavigationController
         if let code = LanguageSelectionLocalStorage().getLanguageSelectedCode() , let language = availableLanguageDetector.getLanguageForCode(code) {

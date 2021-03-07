@@ -26,6 +26,8 @@
 		15D0C1E5234529DB00801461 /* PayloadGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D0C1E4234529DB00801461 /* PayloadGenerator.swift */; };
 		A03D262325D7D4C00030B12C /* LanguageSelectionLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03D262225D7D4C00030B12C /* LanguageSelectionLocalStorage.swift */; };
 		A0DD24C425F500A400989EF9 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A0DD24C325F500A400989EF9 /* SDWebImage */; };
+		A0DD24CA25F5041700989EF9 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = A0DD24C925F5041700989EF9 /* Mixpanel */; };
+		A0DD24CE25F507F700989EF9 /* AnalyticsContants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD24CD25F507F700989EF9 /* AnalyticsContants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,7 @@
 		15CB48C52266297F00340A0C /* MapSeachResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSeachResults.swift; sourceTree = "<group>"; };
 		15D0C1E4234529DB00801461 /* PayloadGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadGenerator.swift; sourceTree = "<group>"; };
 		A03D262225D7D4C00030B12C /* LanguageSelectionLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionLocalStorage.swift; sourceTree = "<group>"; };
+		A0DD24CD25F507F700989EF9 /* AnalyticsContants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsContants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0DD24CA25F5041700989EF9 /* Mixpanel in Frameworks */,
 				A0DD24C425F500A400989EF9 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,7 +86,6 @@
 		1504534C2250E341002F8527 /* ListenWiki */ = {
 			isa = PBXGroup;
 			children = (
-				15124377234BCD5200BF020A /* SupportingFiles */,
 				1504534D2250E341002F8527 /* AppDelegate.swift */,
 				1504534F2250E341002F8527 /* MapViewController.swift */,
 				15C9B87423413B3200424727 /* ListenArticleViewController.swift */,
@@ -99,8 +102,10 @@
 				154F68412520AEC100C949FC /* LanguageSelectorViewController.swift */,
 				154F68432520B21100C949FC /* LanguagePickerViewDataSource.swift */,
 				154F68452520B49300C949FC /* LanguageListCreator.swift */,
-				15124376234BA09D00BF020A /* Deprecated */,
 				A03D262225D7D4C00030B12C /* LanguageSelectionLocalStorage.swift */,
+				15124377234BCD5200BF020A /* SupportingFiles */,
+				15124376234BA09D00BF020A /* Deprecated */,
+				A0DD24CD25F507F700989EF9 /* AnalyticsContants.swift */,
 			);
 			path = ListenWiki;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 			name = ListenWiki;
 			packageProductDependencies = (
 				A0DD24C325F500A400989EF9 /* SDWebImage */,
+				A0DD24C925F5041700989EF9 /* Mixpanel */,
 			);
 			productName = ListenWiki;
 			productReference = 1504534A2250E341002F8527 /* ListenWiki.app */;
@@ -170,6 +176,7 @@
 			mainGroup = 150453412250E341002F8527;
 			packageReferences = (
 				A0DD24C225F500A400989EF9 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				A0DD24C825F5041700989EF9 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 			);
 			productRefGroup = 1504534B2250E341002F8527 /* Products */;
 			projectDirPath = "";
@@ -202,6 +209,7 @@
 				150453502250E341002F8527 /* MapViewController.swift in Sources */,
 				154F68442520B21100C949FC /* LanguagePickerViewDataSource.swift in Sources */,
 				1576FA5423427F3F00A64003 /* Util.swift in Sources */,
+				A0DD24CE25F507F700989EF9 /* AnalyticsContants.swift in Sources */,
 				154F68422520AEC200C949FC /* LanguageSelectorViewController.swift in Sources */,
 				15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */,
 				A03D262325D7D4C00030B12C /* LanguageSelectionLocalStorage.swift in Sources */,
@@ -428,6 +436,14 @@
 				minimumVersion = 5.10.4;
 			};
 		};
+		A0DD24C825F5041700989EF9 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -435,6 +451,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A0DD24C225F500A400989EF9 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		A0DD24C925F5041700989EF9 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0DD24C825F5041700989EF9 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

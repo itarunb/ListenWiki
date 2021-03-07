@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Mixpanel",
+        "repositoryURL": "https://github.com/mixpanel/mixpanel-swift.git",
+        "state": {
+          "branch": null,
+          "revision": "1e45e0e676a7a49ec44f326c3a1f33888baf0c7c",
+          "version": "2.9.0"
+        }
+      },
+      {
         "package": "SDWebImage",
         "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
         "state": {
