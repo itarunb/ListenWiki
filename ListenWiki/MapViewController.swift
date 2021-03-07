@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Mixpanel
 import SDWebImage
 
 class MapViewController: UIViewController {
@@ -115,7 +116,8 @@ class MapViewController: UIViewController {
         }
         self.setAsSearching(searchOngoing:true)
         let region  = mapView.region
-        networkController?.request(payload: PayloadGenerator(requestType: .fetchLocations(region: region)).generatePayload(), completion:{ [weak self]
+        let payload = PayloadGenerator(requestType: .fetchLocations(region: region)).generatePayload()
+        networkController?.request(payload: payload, completion:{ [weak self]
             (result: Result<MapSearchResults, Error>) in
             DispatchQueue.main.async { [weak self] in
                 do {
@@ -126,6 +128,8 @@ class MapViewController: UIViewController {
                     let alert = UIAlertController(title: "Oops! Soemthing went wrong", message: "Looks like there are not many locations with Wikipedia Pages in \(languageName). You might want to zoom in/out or change the area of search", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self?.present(alert, animated: true, completion: nil)
+                    let eventProperties = [AnalyticsContants.Mixpanel.screen : AnalyticsContants.ScreenNames.listenArticleScreen , AnalyticsContants.Mixpanel.language : self?.language?.displayStr]  as? Properties
+                    Mixpanel.mainInstance().track(event:AnalyticsContants.Mixpanel.EventName.apiError , properties: eventProperties)
                 }
                 self?.setAsSearching(searchOngoing:false)
             }
