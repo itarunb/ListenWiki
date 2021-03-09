@@ -8,6 +8,8 @@
 
 import UIKit
 import AVKit
+import Mixpanel
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setUpAudioSession()
+        setUpMixpanel()
+        FirebaseApp.configure()
+        Mixpanel.mainInstance().track(event: AnalyticsContants.Mixpanel.EventName.appLaunch)
         let availableLanguageDetector = LanguageListCreator()
         self.navigation = (window?.rootViewController) as? UINavigationController
         if let code = LanguageSelectionLocalStorage().getLanguageSelectedCode() , let language = availableLanguageDetector.getLanguageForCode(code) {
@@ -102,5 +107,10 @@ extension AppDelegate {
         self.mapVC = mapsViewController
         window?.rootViewController = navigation
         navigation?.setViewControllers([mapsViewController], animated: true)
+    }
+    
+    private func setUpMixpanel() {
+        Mixpanel.initialize(token: AnalyticsContants.Mixpanel.mixpanelToken)
+        Mixpanel.mainInstance().loggingEnabled = true
     }
 }

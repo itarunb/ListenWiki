@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import SDWebImage
+import Mixpanel
 
 
 class ListenArticleViewController : UIViewController {
@@ -93,7 +94,8 @@ class ListenArticleViewController : UIViewController {
     
     private func fectchExtractAndPlay() {
         let title = Util.createUrlQueryParamFromTitle(title:wikiPage.title)
-        networkController.request(payload: PayloadGenerator(requestType: .fetchArticleText(title: title)).generatePayload(), completion: { [weak self]
+        let payload = PayloadGenerator(requestType: .fetchArticleText(title: title)).generatePayload()
+        networkController.request(payload: payload, completion: { [weak self]
             (result: Result<WikiPageExtract, Error>) in
               DispatchQueue.main.async { [weak self]  in
                     do {
@@ -103,6 +105,8 @@ class ListenArticleViewController : UIViewController {
                         let alert = UIAlertController(title: "Oops!", message: "Something went wrong!", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self?.present(alert, animated: true, completion: nil)
+                        let eventProperties = [AnalyticsContants.Mixpanel.screen : AnalyticsContants.ScreenNames.listenArticleScreen , AnalyticsContants.Mixpanel.language : self?.language.displayStr] as? Properties
+                        Mixpanel.mainInstance().track(event:AnalyticsContants.Mixpanel.EventName.apiError , properties: eventProperties)
                     }
             }
         })
@@ -145,7 +149,6 @@ class ListenArticleViewController : UIViewController {
         self.startPlaying()
     }
     
-    let sharedImageDownloader = SDWebImageDownloader.shared()
     
 //    private func loadBackgroundImage() {
 //        if let imageFileName = wikiPageExtract?.pageImage {
@@ -176,7 +179,8 @@ class ListenArticleViewController : UIViewController {
             self.present(alert, animated: true, completion:{
                 [weak self] in
                 self?.navigationController?.popViewController(animated: true)
-            } )
+            })
+            Mixpanel.mainInstance().track(event:AnalyticsContants.Mixpanel.EventName.noWikiTextFound)
             return
         }
        // print(wikiPageExtract?.pageImage)
@@ -202,6 +206,7 @@ extension ListenArticleViewController : AVSpeechSynthesizerDelegate {
         let alert = UIAlertController(title: "Article Finished", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        Mixpanel.mainInstance().track(event:AnalyticsContants.Mixpanel.EventName.articleFinishedPlaying, properties: [AnalyticsContants.Mixpanel.language: self.language.displayStr])
     }
 
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {

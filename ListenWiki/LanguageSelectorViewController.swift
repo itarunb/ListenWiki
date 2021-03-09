@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 class LanguageSelectorViewController: UIViewController {
 
@@ -63,6 +64,7 @@ class LanguageSelectorViewController: UIViewController {
         self.title = "Select Language"
         doneButton.addTarget(self, action: #selector(doneTapped), for: .touchUpInside)
         pickerView?.selectRow(pickerDataSource.getSelectedLanguageIndex(), inComponent: 0, animated: true)
+        Mixpanel.mainInstance().track(event: AnalyticsContants.Mixpanel.EventName.languageScreenShown)
     }
     
     private func addComponentsViews() {

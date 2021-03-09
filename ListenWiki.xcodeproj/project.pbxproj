@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		124649162E7B01DD25E899E5 /* Pods_ListenWiki.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3820AA4EA9D52148D91C18D0 /* Pods_ListenWiki.framework */; };
 		1504534E2250E341002F8527 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1504534D2250E341002F8527 /* AppDelegate.swift */; };
 		150453502250E341002F8527 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1504534F2250E341002F8527 /* MapViewController.swift */; };
 		150453532250E341002F8527 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 150453512250E341002F8527 /* Main.storyboard */; };
@@ -26,6 +25,11 @@
 		15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CB48C52266297F00340A0C /* MapSeachResults.swift */; };
 		15D0C1E5234529DB00801461 /* PayloadGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D0C1E4234529DB00801461 /* PayloadGenerator.swift */; };
 		A03D262325D7D4C00030B12C /* LanguageSelectionLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03D262225D7D4C00030B12C /* LanguageSelectionLocalStorage.swift */; };
+		A0DD24C425F500A400989EF9 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A0DD24C325F500A400989EF9 /* SDWebImage */; };
+		A0DD24CA25F5041700989EF9 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = A0DD24C925F5041700989EF9 /* Mixpanel */; };
+		A0DD24CE25F507F700989EF9 /* AnalyticsContants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD24CD25F507F700989EF9 /* AnalyticsContants.swift */; };
+		A0DD24D225F5181D00989EF9 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = A0DD24D125F5181D00989EF9 /* FirebaseCrashlytics */; };
+		A0DD24E025F51ED800989EF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0DD24DF25F51ED800989EF9 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,10 +52,9 @@
 		15CB48C3226623EF00340A0C /* MapResultFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapResultFetcher.swift; sourceTree = "<group>"; };
 		15CB48C52266297F00340A0C /* MapSeachResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSeachResults.swift; sourceTree = "<group>"; };
 		15D0C1E4234529DB00801461 /* PayloadGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadGenerator.swift; sourceTree = "<group>"; };
-		1D15321960DD0B27DB22D484 /* Pods-ListenWiki.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListenWiki.release.xcconfig"; path = "Target Support Files/Pods-ListenWiki/Pods-ListenWiki.release.xcconfig"; sourceTree = "<group>"; };
-		3820AA4EA9D52148D91C18D0 /* Pods_ListenWiki.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ListenWiki.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8297ABEB8E42F859AB517F1B /* Pods-ListenWiki.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListenWiki.debug.xcconfig"; path = "Target Support Files/Pods-ListenWiki/Pods-ListenWiki.debug.xcconfig"; sourceTree = "<group>"; };
 		A03D262225D7D4C00030B12C /* LanguageSelectionLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionLocalStorage.swift; sourceTree = "<group>"; };
+		A0DD24CD25F507F700989EF9 /* AnalyticsContants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsContants.swift; sourceTree = "<group>"; };
+		A0DD24DF25F51ED800989EF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +62,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				124649162E7B01DD25E899E5 /* Pods_ListenWiki.framework in Frameworks */,
+				A0DD24D225F5181D00989EF9 /* FirebaseCrashlytics in Frameworks */,
+				A0DD24CA25F5041700989EF9 /* Mixpanel in Frameworks */,
+				A0DD24C425F500A400989EF9 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,8 +76,6 @@
 			children = (
 				1504534C2250E341002F8527 /* ListenWiki */,
 				1504534B2250E341002F8527 /* Products */,
-				C31A510FC8FF465D645B702D /* Pods */,
-				6761781C580F57F5FD552FD8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,7 +90,7 @@
 		1504534C2250E341002F8527 /* ListenWiki */ = {
 			isa = PBXGroup;
 			children = (
-				15124377234BCD5200BF020A /* SupportingFiles */,
+				A0DD24DF25F51ED800989EF9 /* GoogleService-Info.plist */,
 				1504534D2250E341002F8527 /* AppDelegate.swift */,
 				1504534F2250E341002F8527 /* MapViewController.swift */,
 				15C9B87423413B3200424727 /* ListenArticleViewController.swift */,
@@ -104,8 +107,10 @@
 				154F68412520AEC100C949FC /* LanguageSelectorViewController.swift */,
 				154F68432520B21100C949FC /* LanguagePickerViewDataSource.swift */,
 				154F68452520B49300C949FC /* LanguageListCreator.swift */,
-				15124376234BA09D00BF020A /* Deprecated */,
 				A03D262225D7D4C00030B12C /* LanguageSelectionLocalStorage.swift */,
+				15124377234BCD5200BF020A /* SupportingFiles */,
+				15124376234BA09D00BF020A /* Deprecated */,
+				A0DD24CD25F507F700989EF9 /* AnalyticsContants.swift */,
 			);
 			path = ListenWiki;
 			sourceTree = "<group>";
@@ -126,23 +131,6 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		6761781C580F57F5FD552FD8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3820AA4EA9D52148D91C18D0 /* Pods_ListenWiki.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C31A510FC8FF465D645B702D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8297ABEB8E42F859AB517F1B /* Pods-ListenWiki.debug.xcconfig */,
-				1D15321960DD0B27DB22D484 /* Pods-ListenWiki.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,17 +138,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1504535C2250E343002F8527 /* Build configuration list for PBXNativeTarget "ListenWiki" */;
 			buildPhases = (
-				EF2BA11F6289F3B59E613ECD /* [CP] Check Pods Manifest.lock */,
 				150453462250E341002F8527 /* Sources */,
 				150453472250E341002F8527 /* Frameworks */,
 				150453482250E341002F8527 /* Resources */,
-				D67A49B3AAA568BD71AA4CF4 /* [CP] Embed Pods Frameworks */,
+				A0DD24D725F519E400989EF9 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = ListenWiki;
+			packageProductDependencies = (
+				A0DD24C325F500A400989EF9 /* SDWebImage */,
+				A0DD24C925F5041700989EF9 /* Mixpanel */,
+				A0DD24D125F5181D00989EF9 /* FirebaseCrashlytics */,
+			);
 			productName = ListenWiki;
 			productReference = 1504534A2250E341002F8527 /* ListenWiki.app */;
 			productType = "com.apple.product-type.application";
@@ -189,6 +181,11 @@
 				Base,
 			);
 			mainGroup = 150453412250E341002F8527;
+			packageReferences = (
+				A0DD24C225F500A400989EF9 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				A0DD24C825F5041700989EF9 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
+				A0DD24D025F5181D00989EF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 1504534B2250E341002F8527 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -204,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				150453582250E343002F8527 /* LaunchScreen.storyboard in Resources */,
+				A0DD24E025F51ED800989EF9 /* GoogleService-Info.plist in Resources */,
 				150453552250E343002F8527 /* Assets.xcassets in Resources */,
 				150453532250E341002F8527 /* Main.storyboard in Resources */,
 			);
@@ -212,24 +210,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D67A49B3AAA568BD71AA4CF4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ListenWiki/Pods-ListenWiki-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ListenWiki/Pods-ListenWiki-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ListenWiki/Pods-ListenWiki-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EF2BA11F6289F3B59E613ECD /* [CP] Check Pods Manifest.lock */ = {
+		A0DD24D725F519E400989EF9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -237,19 +218,14 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ListenWiki-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "${BUILD_DIR%Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -262,6 +238,7 @@
 				150453502250E341002F8527 /* MapViewController.swift in Sources */,
 				154F68442520B21100C949FC /* LanguagePickerViewDataSource.swift in Sources */,
 				1576FA5423427F3F00A64003 /* Util.swift in Sources */,
+				A0DD24CE25F507F700989EF9 /* AnalyticsContants.swift in Sources */,
 				154F68422520AEC200C949FC /* LanguageSelectorViewController.swift in Sources */,
 				15CB48C62266297F00340A0C /* MapSeachResults.swift in Sources */,
 				A03D262325D7D4C00030B12C /* LanguageSelectionLocalStorage.swift in Sources */,
@@ -416,11 +393,11 @@
 		};
 		1504535D2250E343002F8527 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8297ABEB8E42F859AB517F1B /* Pods-ListenWiki.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VFU4758HP3;
 				INFOPLIST_FILE = ListenWiki/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -428,7 +405,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fabulousApps.ListenWiki;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabulousApps.ListenWiki.Prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -437,7 +415,6 @@
 		};
 		1504535E2250E343002F8527 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D15321960DD0B27DB22D484 /* Pods-ListenWiki.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -450,7 +427,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fabulousApps.ListenWiki;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fabulousApps.ListenWiki.Prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -480,6 +458,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A0DD24C225F500A400989EF9 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.4;
+			};
+		};
+		A0DD24C825F5041700989EF9 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.0;
+			};
+		};
+		A0DD24D025F5181D00989EF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A0DD24C325F500A400989EF9 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0DD24C225F500A400989EF9 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		A0DD24C925F5041700989EF9 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0DD24C825F5041700989EF9 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
+		};
+		A0DD24D125F5181D00989EF9 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0DD24D025F5181D00989EF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 150453422250E341002F8527 /* Project object */;
 }

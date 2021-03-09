@@ -11,7 +11,7 @@ import AVFoundation
 
 struct LanguageListCreator {
     static let defaultSelectedLanguage  = Language(displayStr: "English (United States)", wikiPageCode: "en", bcp47Code: "en-US")
-    
+    static let availableLangugagesCode  = Array(Set(AVSpeechSynthesisVoice.speechVoices().map({ $0.language })))
     let availableLanguages :[Language]
     
     init() {
@@ -19,7 +19,7 @@ struct LanguageListCreator {
     }
     
     static private func getLanguages() -> [Language] {
-        let availableLangugagesCode = Array(Set(AVSpeechSynthesisVoice.speechVoices().map({ $0.language })))
+        let availableLangugagesCode = LanguageListCreator.availableLangugagesCode
         var temp = [Language]()
         let regionCodes = Locale.isoRegionCodes //.map({$0.lowercased()})
         for languageCode in availableLangugagesCode {
